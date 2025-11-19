@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>สรุป Docker (ฉบับง่าย)</h1>
+
+	<p>Docker เป็นแพลตฟอร์มสำหรับรันแอปในรูปแบบคอนเทนเนอร์ ซึ่งช่วยแพ็กโปรแกรมและ dependencies ให้ทำงานได้เหมือนกันทั้งบนเครื่องพัฒนาและเซิร์ฟเวอร์</p>
+
+	<h2>การสร้าง Docker คืออะไร</h2>
+	<p>การสร้าง Docker หมายถึงการสร้าง <em>image</em> ซึ่งเป็นชิ้นที่บรรจุระบบไฟล์ของแอป ทุกอย่างที่จำเป็นต่อการรัน (โค้ด, ไลบรารี, การตั้งค่า) โดยมักกำหนดผ่านไฟล์ <code>Dockerfile</code></p>
+
+	<center>
+		<img src="{{ url_for('static', filename='assets/docker/overview.png') }}" alt="Docker overview placeholder">
+		<a href="https://praveendandu24.medium.com/understanding-docker-architecture-an-in-depth-overview-of-docker-components-and-usage-f1a26bd217f9">
+			<i>
+				Understanding Docker Architecture: An In-depth Overview of Docker Components and Usage
+
+
+			</i>
+		</a>
+	</center>
+	<h2>การสร้าง Docker image</h2>
+	<p>ขั้นตอนทั่วไป:</p>
+	<ol>
+		<li>เขียนไฟล์ <code>Dockerfile</code> ที่ระบุ base image และคำสั่งติดตั้ง/คัดลอกไฟล์</li>
+		<li>รันคำสั่ง <code>docker build -t ชื่อภาพ:tag .</code> เพื่อสร้าง image</li>
+		<li>ตรวจสอบ image ด้วย <code>docker images</code></li>
+	</ol>
+
+	<h2>การใช้งาน Docker image</h2>
+	<p>รัน container จาก image ด้วยคำสั่งตัวอย่าง:</p>
+	<pre>
+		<code>docker pull image:tag		# โหลด image จาก remote registry
+docker run --name my-app -d -p 8000:80 image:tag</code>
+</pre>
+
+	<h2>การตรวจสอบการทำงานของ Docker</h2>
+	<ul>
+		<li><strong>ดู container ที่กำลังรัน:</strong> <code>docker ps</code></li>
+		<li><strong>ดู logs:</strong> <code>docker logs CONTAINER</code></li>
+		<li><strong>เข้าไปใน container:</strong> <code>docker exec -it CONTAINER /bin/sh</code></li>
+		<li><strong>สถิติการใช้ทรัพยากร:</strong> <code>docker stats</code></li>
+		<li><strong>ข้อมูลเชิงลึกของ container/image:</strong> <code>docker inspect CONTAINER_OR_IMAGE</code></li>
+	</ul>
+{% endblock %}

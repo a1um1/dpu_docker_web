@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>Git</h1>
+
+	<p>Git เป็นระบบควบคุมเวอร์ชันแบบกระจาย (distributed VCS) ที่ใช้จัดการการเปลี่ยนแปลงของซอร์สโค้ด ทำให้ทีมทำงานร่วมกันได้อย่างมีประสิทธิภาพ และสามารถย้อนกลับไปยังสถานะก่อนหน้าได้เมื่อจำเป็น</p>
+
+	<h2>พื้นฐานสำคัญ</h2>
+	<ul>
+		<li><strong>Repository (repo):</strong> โฟลเดอร์ที่เก็บประวัติการเปลี่ยนแปลง</li>
+		<li><strong>Working Directory:</strong> ไฟล์ที่แก้ไขอยู่บนเครื่องคุณ</li>
+		<li><strong>Staging (Index):</strong> พื้นที่เตรียมไฟล์ก่อน commit</li>
+		<li><strong>Commit:</strong> บันทึกชุดการเปลี่ยนแปลงพร้อมข้อความอธิบาย</li>
+		<li><strong>Remote:</strong> ที่เก็บระยะไกล (เช่น GitHub, GitLab)</li>
+	</ul>
+
+	<p>ถ้าต้องการแทรกรูปภาพแผนผัง Git หรือ workflow ให้ใช้ตำแหน่งรูปด้านล่าง:</p>
+	<center>
+		<img src="{{ url_for('static', filename='assets/git/gitflow.png') }}" alt="Git overview placeholder">
+
+		<a href="https://sawangpong.gitbooks.io/administrators-guide-centos7/content/git.html">
+			<i>
+				การใช้งาน GIT
+			</i>
+		</a>
+	</center>
+	<h2>คำสั่งพื้นฐาน (ตัวอย่าง)</h2>
+	<pre><code>git init                  # สร้าง repo ใหม่
+git clone &lt;url&gt;           # คัดลอก repo
+git status                # ดูสถานะไฟล์
+git add &lt;file&gt;            # เพิ่มไฟล์ไปที่ staging
+git commit -m "message"   # บันทึกการเปลี่ยนแปลง
+git log                   # ดูประวัติ commit
+git branch                # ดูสาขา
+git checkout -b feature   # สร้างและสลับไปที่สาขาใหม่
+git merge main            # รวมสาขา
+git pull                  # ดึงและรวมจาก remote
+git push                  # ส่งขึ้น remote</code></pre>
+
+	<h2>แนวปฏิบัติที่แนะนำ</h2>
+	<ul>
+		<li>ใช้ branch สำหรับฟีเจอร์หรือบั๊กแต่ละอย่าง</li>
+		<li>เขียนข้อความ commit ให้สั้นชัดเจนและมีความหมาย</li>
+		<li>รีวิวโค้ดผ่าน pull/merge requests ก่อนรวมเข้าหลัก</li>
+		<li>ใช้ `.gitignore` เพื่อไม่เก็บไฟล์ชั่วคราวหรือความลับ</li>
+	</ul>
+
+{% endblock %}
